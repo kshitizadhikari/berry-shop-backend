@@ -80,6 +80,8 @@ public static class ServiceExtensions
         services.AddScoped<IProductService, ProductService>();
         services.AddScoped<ICartService, CartService>();
         services.AddScoped<ICartItemService, CartItemService>();
+        services.AddScoped<IOrderService, OrderService>();
+        services.AddScoped<IOrderItemService, OrderItemService>();
         return services;
     }
 

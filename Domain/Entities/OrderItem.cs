@@ -1,6 +1,7 @@
 using Domain.Entities.Base;
 
 namespace Domain.Entities;
+
 public class OrderItem : BaseEntity
 {
     public Guid OrderId { get; set; }
