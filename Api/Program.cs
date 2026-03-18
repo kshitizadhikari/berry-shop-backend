@@ -1,5 +1,6 @@
 using Api.Extensions;
 using Api.Middlewares;
+using Domain.Entities;
 using Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
 using Scalar.AspNetCore;
@@ -19,7 +20,11 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
+    var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+
     await Seeder.SeedRolesAsync(roleManager);
+    await Seeder.SeedAdminAsync(userManager, config);
 }
 
 // Configure the HTTP request pipeline.
