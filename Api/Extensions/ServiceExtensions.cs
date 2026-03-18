@@ -1,12 +1,12 @@
 using System.Text;
 using Domain.Entities;
 using Infrastructure.Data;
+using Infrastructure.Repositories;
 using Infrastructure.Repositories.IRepositories;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
-using Microsoft.OpenApi;
 using Service.Services;
 using Service.Services.IServices;
 
@@ -75,7 +75,9 @@ public static class ServiceExtensions
     public static IServiceCollection AddApplicationServices(this IServiceCollection services)
     {
         services.AddAuthorization();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAuthService, AuthService>();
+        services.AddScoped<IProductService, ProductService>();
         return services;
     }
 
