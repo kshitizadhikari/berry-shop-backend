@@ -1,4 +1,5 @@
 namespace Domain;
+
 public enum OrderStatus
 {
     Pending = 0,
@@ -6,4 +7,10 @@ public enum OrderStatus
     Shipped,
     Delivered,
     Cancelled
+}
+
+public enum AppRole
+{
+    Admin,
+    Customer
 }

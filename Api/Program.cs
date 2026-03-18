@@ -35,7 +35,10 @@ if (app.Environment.IsDevelopment())
     {
         options.Title = "Berry Shop API";
         options.Theme = ScalarTheme.DeepSpace;
-        options.DefaultHttpClient = new(ScalarTarget.Http, ScalarClient.HttpClient);
+        options.Authentication = new ScalarAuthenticationOptions
+        {
+            PreferredSecuritySchemes = ["Bearer"]
+        };
     });
 }
 

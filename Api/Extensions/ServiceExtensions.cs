@@ -78,6 +78,8 @@ public static class ServiceExtensions
         services.AddScoped<IUnitOfWork, UnitOfWork>();
         services.AddScoped<IAuthService, AuthService>();
         services.AddScoped<IProductService, ProductService>();
+        services.AddScoped<ICartService, CartService>();
+        services.AddScoped<ICartItemService, CartItemService>();
         return services;
     }
 
