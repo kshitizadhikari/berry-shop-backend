@@ -1,28 +1,28 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net10.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
       <Reference Include="Microsoft.Extensions.Identity.Core">
-        <HintPath>..\..\..\..\.nuget\packages\microsoft.extensions.identity.core\10.0.5\lib\net10.0\Microsoft.Extensions.Identity.Core.dll</HintPath>
+        <HintPath>..\..\..\..\.nuget\packages\microsoft.extensions.identity.core\8.0.5\lib\net8.0\Microsoft.Extensions.Identity.Core.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.IdentityModel.JsonWebTokens">
-        <HintPath>..\..\..\..\.nuget\packages\microsoft.identitymodel.jsonwebtokens\8.0.1\lib\net9.0\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
+        <HintPath>..\..\..\..\.nuget\packages\microsoft.identitymodel.jsonwebtokens\8.0.1\lib\net8.0\Microsoft.IdentityModel.JsonWebTokens.dll</HintPath>
       </Reference>
       <Reference Include="Microsoft.IdentityModel.Tokens">
-        <HintPath>..\..\..\..\.nuget\packages\microsoft.identitymodel.tokens\8.0.1\lib\net9.0\Microsoft.IdentityModel.Tokens.dll</HintPath>
+        <HintPath>..\..\..\..\.nuget\packages\microsoft.identitymodel.tokens\8.0.1\lib\net8.0\Microsoft.IdentityModel.Tokens.dll</HintPath>
       </Reference>
       <Reference Include="System.IdentityModel.Tokens.Jwt">
-        <HintPath>..\..\..\..\.nuget\packages\system.identitymodel.tokens.jwt\8.0.1\lib\net9.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
+        <HintPath>..\..\..\..\.nuget\packages\system.identitymodel.tokens.jwt\8.0.1\lib\net8.0\System.IdentityModel.Tokens.Jwt.dll</HintPath>
       </Reference>
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.9" />
+      <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.3.8" />
     </ItemGroup>
 
     <ItemGroup>

@@ -87,7 +87,6 @@ public static class ServiceExtensions
 
     public static IServiceCollection AddScalar(this IServiceCollection services)
     {
-        services.AddOpenApi();
         return services;
     }
 }

@@ -3,7 +3,6 @@ using Api.Middlewares;
 using Domain.Entities;
 using Infrastructure.Seeders;
 using Microsoft.AspNetCore.Identity;
-using Scalar.AspNetCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,10 +12,24 @@ builder.Services.AddDatabase(builder.Configuration);
 builder.Services.AddApplicationServices();
 builder.Services.AddIdentityServices();
 builder.Services.AddJwtAuthentication(builder.Configuration);
-builder.Services.AddScalar();
+
+// ✅ Swagger instead of Scalar
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", policy =>
+    {
+        policy
+            .AllowAnyOrigin()
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
 
 var app = builder.Build();
 
+// ✅ Seed data
 using (var scope = app.Services.CreateScope())
 {
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
@@ -27,18 +40,14 @@ using (var scope = app.Services.CreateScope())
     await Seeder.SeedAdminAsync(userManager, config);
 }
 
-// Configure the HTTP request pipeline.
+// ✅ Dev tools
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference(options =>
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
     {
-        options.Title = "Berry Shop API";
-        options.Theme = ScalarTheme.DeepSpace;
-        options.Authentication = new ScalarAuthenticationOptions
-        {
-            PreferredSecuritySchemes = ["Bearer"]
-        };
+        options.SwaggerEndpoint("/swagger/v1/swagger.json", "Berry Shop API");
+        options.RoutePrefix = string.Empty; // opens at root
     });
 }
 
