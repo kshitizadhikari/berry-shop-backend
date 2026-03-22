@@ -24,23 +24,19 @@ public static class ServiceExtensions
 
     public static IServiceCollection AddIdentityServices(this IServiceCollection services)
     {
-        services.AddIdentity<AppUser, IdentityRole>(options =>
+        services.AddIdentityCore<AppUser>(options =>
             {
-                // Password rules
                 options.Password.RequiredLength = 6;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
-
-                // Lockout
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                 options.Lockout.MaxFailedAccessAttempts = 5;
-
-                // User
                 options.User.RequireUniqueEmail = true;
             })
+            .AddRoles<IdentityRole>()
+            .AddSignInManager<SignInManager<AppUser>>()
             .AddEntityFrameworkStores<AppDbContext>()
             .AddDefaultTokenProviders();
-
         return services;
     }
 
@@ -56,6 +52,7 @@ public static class ServiceExtensions
             })
             .AddJwtBearer(options =>
             {
+                options.MapInboundClaims = false;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
                     ValidateIssuer = true,

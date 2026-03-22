@@ -1,6 +1,7 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Service.Services.IServices;
 
 namespace Api.Controllers;
@@ -10,7 +11,7 @@ namespace Api.Controllers;
 [Authorize]
 public class OrderItemController(IOrderItemService orderItemService) :  ControllerBase
 {
-    private string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+    private string UserId => User.FindFirstValue(JwtRegisteredClaimNames.Sub)!;
 
     [HttpGet]
     public async Task<IActionResult> GetByOrderId(Guid orderId)

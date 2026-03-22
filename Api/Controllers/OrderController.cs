@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Domain.Dtos.Order;
 using Microsoft.AspNetCore.Authorization;
@@ -7,11 +8,11 @@ using Service.Services.IServices;
 namespace Api.Controllers;
 
 [ApiController]
-[Route("api/orders")]
+[Route("api/[controller]")]
 [Authorize]
 public class OrderController(IOrderService orderService) : ControllerBase
 {
-    private string UserId => User.FindFirstValue(ClaimTypes.NameIdentifier)!;
+    private string UserId => User.FindFirstValue(JwtRegisteredClaimNames.Sub)!;
 
     [HttpPost]
     public async Task<IActionResult> PlaceOrder([FromBody] PlaceOrderDto request)
